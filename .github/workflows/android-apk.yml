@@ -34,7 +34,12 @@ jobs:
 
       - name: Create Android project
         run: npx cap add android
-
+      - name: Generate TheAppleBook app icon
+        run: |
+          mkdir -p assets
+          cp icons/icon.svg assets/logo.svg
+          npm install --no-save @capacitor/assets
+          npx capacitor-assets generate --android --iconBackgroundColor '#641b2b' --splashBackgroundColor '#641b2b'
       - name: Sync Capacitor
         run: npx cap sync android
 
